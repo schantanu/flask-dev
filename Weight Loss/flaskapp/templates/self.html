@@ -1,0 +1,92 @@
+{% block content %}
+
+<div class="h-300 p-2 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-3">
+        <div class="d-flex justify-content-end">
+            <button class="btn btn-light" type="button"><i class="bi bi-info-square"></i></button>
+        </div>
+        <div class="d-flex justify-content-center">
+            <div class="col-md-6">
+                <div class="row mb-5">
+                    <h3 class="d-flex fw-bold justify-content-center"></h3>
+
+                    <div class="row">
+                        <hr>
+                        {% for post in posts.items %}
+                            <div class="col-4 text-center">
+                                <p>Current Weight</p>
+                                <h5 class="fw-bold">{{ "%.1f"|format(post.weight) }} {{ entry.metric }}</h5>
+                            </div>
+                            <div class="col-4 text-center">
+                                <p>Goal Weight</p>
+                                <h5 class="fw-bold">{{ "%.1f"|format(entry.goal_weight) }} {{ entry.metric }}</h5>
+                            </div>
+                            <div class="col-4 text-center">
+                                <p>Loss Remaining</p>
+                                <h5 class="fw-bold">{{ "%.1f"|format(post.weight - entry.goal_weight) }} {{ entry.metric }}</h5>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="row">
+                    <form method="POST" action="">
+                        {{ form.hidden_tag() }}
+                            {% if form.weight.errors %}
+                                <div class="input-group mb-5">
+                                    {{ form.weight(class="form-control is-invalid", placeholder="Add/Update Weight") }}
+                                    {{ form.submit(class="btn btn-primary") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.weight.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="input-group mb-5">
+                                    {{ form.weight(class="form-control", placeholder="Add or Update Weight") }}
+                                    {{ form.submit(class="btn btn-primary") }}
+                                </div>
+                            {% endif %}
+                    </form>
+                </div>
+                <div class="row">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">Date</th>
+                            <th scope="col">User</th>
+                            <th scope="col">Weight</th>
+                            <!-- <th scope="col">Action</th> -->
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for post in posts.items %}
+                                <tr>
+                                    <td class="text-muted">{{ post.date_posted | datetimefilter }}</td>
+                                    <td class="text-muted">{{ user.animal }}</td>
+                                    <td class="text-muted">{{ post.weight }}</td>
+                                    <!-- <td><a class="btn btn-sm btn-danger" href="{{ url_for('main.home', page=page_num) }}">Edit</a></td> -->
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+                        {% if page_num %}
+                        {% if posts.page == page_num %}
+                            <a class="btn btn-primary mb-4" href="{{ url_for('challenge.challenge_page', challenge_id=challenge.id, page=page_num) }}">{{ page_num }}</a>
+                        {% else %}
+                            <a class="btn btn-outline-primary mb-4" href="{{ url_for('challenge.challenge_page', challenge_id=challenge.id, page=page_num) }}">{{ page_num }}</a>
+                        {% endif %}
+                        {% else %}
+                        ...
+                        {% endif %}
+                    {% endfor %}
+                </div>       
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,66 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css");
+
+body {
+  /* background: #F8F9FA; */
+  background: #FFFFFF;
+  font-family: 'Source Sans Pro', sans-serif;
+  /* font-size: 1rem; */
+  font-size: 0.95rem;
+}
+
+/* nav {
+  margin-bottom: 50px;
+} */
+
+main {
+  margin-top: 80px;
+}
+
+.navbar-brand {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.table {
+  font-size: 0.98rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #444444;
+}
+
+.card {
+  background: #F8F9FA;
+  border-radius: 0.5rem;
+}
+
+.card-title {
+  font-weight:600;
+}
+
+.card-challenge {
+  /* border: 2px solid rgb(255, 255, 255); */
+  border: 2px solid #d7f5fa;
+  height: 200px;
+  /* width: 100vw; */
+  /* min-width: 200px;
+  max-width: 200px; */
+  /* margin-right: 1.5rem; */
+}
+
+.card-challenge:hover {
+  border: 2px solid black !important;
+}
+
+/* .card-body {
+  background: #FAF6F4;
+  min-height: 200px;
+  min-width: 200px;
+  max-width: 200px;
+  margin-right: 1.5rem;
+} */
+
+.card-meta{
+  font-weight:600;
+  color:orange;
+}

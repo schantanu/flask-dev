@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="content-section py-3 my-3">
+        
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="col col-xl-5">
+            <div class="card bg-light" style="border-radius: 0.5rem;">
+                <div class="row g-0">
+                    <div class="d-flex align-items-center">
+                        <div class="card-body p-4 p-lg-5 text-black">
+
+                            <h3 class="px-4 py-3 text-center display-7 fw-bold">Join Today</h3>
+
+                            <hr>
+
+                            <form method="POST" action="">
+                                {{ form.hidden_tag() }}
+                                <div class="row gx-4 gy-4">
+                                    <div>
+                                        {{ form.animal.label(class="form-label") }}
+                                        {% if form.animal.errors %}
+                                            {{ form.animal(class="form-select is-invalid") }}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.animal.errors %}
+                                                    <span>{{ error }}</span>
+                                                {% endfor %}
+                                            </div>
+                                        {% else %}
+                                            {{ form.animal(class="form-select") }}
+                                        {% endif %}
+                                    </div>
+                                    <div>
+                                        {{ form.email.label(class="form-label") }}
+                                        {% if form.email.errors %}
+                                            {{ form.email(class="form-control form-control is-invalid") }}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.email.errors %}
+                                                    <span>{{ error }}</span>
+                                                {% endfor %}
+                                            </div>
+                                        {% else %}
+                                            {{ form.email(class="form-control") }}
+                                        {% endif %}
+                                    </div>
+                                    <div>
+                                        {{ form.password.label(class="form-label") }}
+                                        {% if form.password.errors %}
+                                            {{ form.password(class="form-control form-control is-invalid") }}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.password.errors %}
+                                                    <span>{{ error }}</span>
+                                                {% endfor %}
+                                            </div>
+                                        {% else %}
+                                            {{ form.password(class="form-control") }}
+                                        {% endif %}
+                                    </div>
+                                    <div>
+                                        {{ form.confirm_password.label(class="form-label") }}
+                                        {% if form.confirm_password.errors %}
+                                            {{ form.confirm_password(class="form-control form-control is-invalid") }}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.confirm_password.errors %}
+                                                    <span>{{ error }}</span>
+                                                {% endfor %}
+                                            </div>
+                                        {% else %}
+                                            {{ form.confirm_password(class="form-control") }}
+                                        {% endif %}
+                                    </div> 
+                                    <div class="col">
+                                        <div class="mb-3 d-lg-flex justify-content-md-end">
+                                            {{ form.submit(class="btn btn-primary") }}
+                                        </div>
+                                    </div>
+
+                                    <div class="border-top pt-3">
+                                        <small class="text-muted">
+                                            Already Have An Account? <a class="ml-2" href="{{ url_for('users.login') }}">Sign In</a>
+                                        </small>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+{% endblock content %}

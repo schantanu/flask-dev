@@ -1,0 +1,100 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section py-3 my-3 p-3">
+        
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="col col-xl-6">
+            <div class="card bg-light" style="border-radius: 0.5rem;">
+                <div class="row g-0">
+                    <div class="d-flex align-items-center">
+                        <div class="card-body p-4 p-lg-5 text-black">
+
+                            <h3 class="px-4 py-3 text-center display-7 fw-bold">New Challenge</h3>
+
+                            <div class="border-top pt-4">
+                                <form method="POST" action="">
+                                    {{ form.hidden_tag() }}
+                                    <div class="row gx-4 gy-4">
+                                        <div class="col-md-6">
+                                            {{ form.name.label(class="form-label") }}
+                                            {% if form.name.errors %}
+                                                {{ form.name(class="form-input form-control is-invalid") }}
+                                                <div class="invalid-feedback">
+                                                    {% for error in form.name.errors %}
+                                                        <span>{{ error }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                            {% else %}
+                                                {{ form.name(class="form-input form-control") }}
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-md-6">
+                                            {{ form.type.label(class="form-label") }}
+                                            {% if form.type.errors %}
+                                                {{ form.type(class="form-select form-control is-invalid") }}
+                                                <div class="invalid-feedback">
+                                                    {% for error in form.type.errors %}
+                                                        <span>{{ error }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                            {% else %}
+                                                {{ form.type(class="form-select form-control") }}
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-md-12">
+                                            {{ form.description.label(class="form-label") }}
+                                            {% if form.description.errors %}
+                                                {{ form.description(class="form-input form-control is-invalid") }}
+                                                <div class="invalid-feedback">
+                                                    {% for error in form.description.errors %}
+                                                        <span>{{ error }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                            {% else %}
+                                                {{ form.description(class="form-input form-control") }}
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-md-6">
+                                            {{ form.start_date.label(class="form-label") }}
+                                            {% if form.start_date.errors %}
+                                                {{ form.start_date(class="form-control is-invalid", type="date") }}
+                                                <div class="invalid-feedback">
+                                                    {% for error in form.start_date.errors %}
+                                                        <span>{{ error }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                            {% else %}
+                                                {{ form.start_date(class="form-control", type="date") }}
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-md-6">
+                                            {{ form.end_date.label(class="form-label") }}
+                                            {% if form.end_date.errors %}
+                                                {{ form.end_date(class="form-control is-invalid", type="date") }}
+                                                <div class="invalid-feedback">
+                                                    {% for error in form.end_date.errors %}
+                                                        <span>{{ error }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                            {% else %}
+                                                {{ form.end_date(class="form-control", type="date") }}
+                                            {% endif %}
+                                        </div>
+
+                                        <div class="col">
+                                            <div class="mb-3 d-lg-flex justify-content-md-end">
+                                                {{ form.submit(class="btn btn-primary") }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+{% endblock content %}

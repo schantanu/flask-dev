@@ -1,0 +1,48 @@
+{% block content %}
+<div>
+  <h2 class="pb-2 fw-bold border-bottom">Challenges</h2>
+  <div class="row row-cols-1 row-cols-md-3 g-4 p-3">
+
+    {% if user.role == 'admin' %}
+      <div class="col">
+        <div class="card h-100">
+          <div class="card card-body card-challenge" style="background: #FFCE00;">
+            <h5 class="card-title text-center">New Challenge</h5>
+            <div class="footer mt-auto d-flex align-items-end justify-content-sm-center">
+              <a href="{{ url_for('challenge.new_challenge') }}" class="stretched-link"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if challenges %}
+      {% for challenge in challenges %}
+        <div class="col">
+          <div class="card h-100">
+            <div class="card card-body card-challenge">
+              <h5 class="card-title text-center">{{ challenge.name }}</h5>
+              <small class="card-meta text-center">{{ challenge.type }}</small>
+
+              <div class="footer mt-auto d-flex align-items-end justify-content-center">
+                <a href="{{ url_for('challenge.join_challenge', challenge_id=challenge.id) }}" class="stretched-link"></a>
+
+                {% for entry in challenge.entries %}
+                  {% if current_user.id == entry.user.id %}
+                    {% if current_user.id == entry.user.id and entry.enrolled is true %}
+                      <span class="badge rounded-pill bg-primary">Enrolled</span>
+                    {% elif current_user.id == entry.user.id and entry.enrolled is false %}
+                      <span class="badge rounded-pill bg-warning text-dark">Pending</span>
+                    {% endif %}
+                  {% endif %}
+                {% endfor %}
+
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+{% endblock content %}
