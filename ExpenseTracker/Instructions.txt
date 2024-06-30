@@ -1,0 +1,31 @@
+# To generate requirements file
+# Navigate to project folder and run the following
+pipreqs
+
+# Install Virtual Env and Initiate
+python3 -m venv venv
+. venv/bin/activate
+
+# Install piprequirements
+. venv/bin/activate
+Add uWSGI to the requirements file
+python3 -m pip install -r requirements.txt
+
+
+# To Initiate DB
+. venv/bin/activate
+python3
+from application import db
+db.create_all()
+db.commit()
+db.session.commit()
+exit()
+
+# To Run App
+. venv/bin/activate
+python3 run.py
+
+# Requirements
+flask
+sqlalchemy
+flask_wtf

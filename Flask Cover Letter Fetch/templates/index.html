@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', function() {
+                const submitButton = document.getElementById('process_input');
+
+                submitButton.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const storyText = document.getElementById('text_input').value;
+
+                    fetch('/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ story: storyText }),
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('result').textContent = data.result;
+                    })
+                    .catch(error => console.error('Error:', error));
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class='container'>
+            <form>
+                <textarea id="text_input" rows="20" cols="80" name="story"></textarea>
+                <br>
+                <button id='process_input' class='btn btn-default'>Submit</button>
+            </form>
+            <br>
+            <p><h2 align='center'>Result:</h2><h2 id='result' align='center'></h2></p>
+        </div>
+    </body>
+</html>
