@@ -1,0 +1,66 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="content-section">
+  <div class="col-6">
+    <div class="row mt-4 mb-4">
+      <h2>Live Search in Flask using Ajax</h2>
+      <p>The following example looks at live search in Flask using Ajax.</p>
+      <hr>
+      <div class="row mt-4 mb-4">
+      <form method="POST" action="" novalidate="novalidate">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+          <div class="row">
+            <div class="col">
+              {{ form.name.label(class="form-control-label") }}
+              {% if form.name.errors %}
+                  {{ form.name(class="form-control form-control-md is-invalid") }}
+                  <div class="invalid-feedback">
+                      {% for error in form.name.errors %}
+                          <span>{{ error }}</span>
+                      {% endfor %}
+                  </div>
+              {% else %}
+                  {{ form.name(class="form-control form-control-md") }}
+              {% endif %}
+            </div>
+            <div class="col">
+              {{ form.territory.label(class="form-control-label") }}
+              {% if form.territory.errors %}
+                  {{ form.territory(class="form-control form-control-md is-invalid") }}
+                  <div class="invalid-feedback">
+                      {% for error in form.territory.errors %}
+                          <span>{{ error }}</span>
+                      {% endfor %}
+                  </div>
+              {% else %}
+                  {{ form.territory(class="form-control form-select") }}
+              {% endif %}
+            </div>
+          </div>
+          <div class="row">
+               <div class="col">
+              {{ form.states.label(class="form-control-label") }}
+              {% if form.states.errors %}
+                  {{ form.states(class="form-control form-control-md is-invalid") }}
+                  <div class="invalid-feedback">
+                      {% for error in form.states.errors %}
+                          <span>{{ error }}</span>
+                      {% endfor %}
+                  </div>
+              {% else %}
+                  {{ form.states(class="form-control form-control-md") }}
+              {% endif %}
+            </div>
+          </div>
+          <div class="input-group mb-3 justify-content-md-end">
+            <div class="form-group">
+                {{ form.submit(class="btn btn-primary btn-sm") }}
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}
