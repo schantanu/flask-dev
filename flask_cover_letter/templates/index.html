@@ -6,7 +6,7 @@
         <script type=text/javascript>
             $(function() {
               $('a#process_input').bind('click', function() {
-                $.post('/', {  
+                $.post('/', {
                   story: $('textarea[name="story"]').val(),
                 }, function(data) {
                   $('#result').text(data.result);
